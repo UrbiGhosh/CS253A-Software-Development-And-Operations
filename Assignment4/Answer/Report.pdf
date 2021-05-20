@@ -1,0 +1,34 @@
+Report : Common Software Bugs and Methods to Exploit them
+CWE-89: Improper Neutralisation of Special Elements used in an SQL Command ('SQL Injection’)
+• Description: SQL injection is the use of external inputs to incorrectly/not neutralise special components. This vulnerability allows the user to enter inputs that manipulate the SQL query to bypass security checks, insert additional commands, execute system commands etc. This vulnerability is used primarily in websites with rich databases.
+• Specific requirements for the bug to be exploited:
+- Code/ webpage must take input from user
+- There should be a database server
+- There is no specific requirement for operating system/ hardware/ library
+• Exposing the Vulnerability: Let us consider a simple login page that accepts the email and password for allowing access. Suppose the security check is performed by the following line of code:
+SELECT * FROM user_data WHERE email = \''+username + '\' AND password = \'' +password+’\'
+Here the inputs are used directly.
+The statement evaluates to true upon entering the correct credentials that are stored in the database.
+Username: meow@meow.com
+Password: 4b673ef9d9869d2661a128b4d115f5fc
+To go around this security check, we can use the username provided in disjunction with a statement that is always true. We can comment out the rest of the check. Quotes are used appropriately.
+Thus the following login data can be used by an unauthorised person to login.
+Username: xxxx@xxx.com' OR 1 = 1 LIMIT 1 -- ' ] where xxx can be anything Password: <anything> say xxx
+ 1
+• Why this approach works:
+This results in the command:
+SELECT * FROM user_data WHERE email = 'xxxx@xxx.com' OR 1 = 1 LIMIT 1 -- ' ]' AND password = ‘xxx'
+=> SELECT * FROM user_data WHERE FALSE OR TRUE -- ' ]' AND password =
+‘xxx’ (commented out)
+Similarly we could use any combination of logical operands, TRUE statements and FALSE security checks to bypass the security check
+• Mitigation:
+- Use of firewalls can protect against these attacks. It is not fool proof and may result in rejection of genuine attempts, or might not detect attacks at times. Requires manual customisation
+- Error messages must be accessible to users only. By accessing error messages and looking at the SQL query to make stronger attacks. Error messages should contain minimal data, but should be understandable
+- When set of acceptable are limited, simply create a mapping from say username to URL and reject every other input
+- Usage of proper libraries and persistent layers can reduce the risk of SQL attacks
+- Input validation: While performing this check include all possible validations, like length, type, range, syntax etc. It is advisable to disallow meta characters.
+- Output encoding: Get rid of any character that does not confirm with the allowlist (which should be kept very strict, like only alphanumeric and whitespace say)Any special character needed must be wrapped in quotes after escaping.
+References:
+I. https://lucid.blog/jeremiahiro/post/simple-login-with-nodejs-express-and-
+mysql-632 For the framework, as this is my first time using nodejs. II. https://cwe.mitre.org/data/definitions/89.html
+   
