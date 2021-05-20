@@ -1,11 +1,30 @@
 Question:
-You should pick some individual or organization, and write a factual summary (about 500 words). You must produce the writeup in Latex, and the summary should be described with the help of at least five different types of plots. You must be careful to pick the right plot in each case to well illustrate the claim that you want to make. You may collect data from any source, but you must ensure that the plots you produce are not already available (for example, if you draw data from kaggle).
+Statement:
+
+In this assignment, we will be working on common software bugs and methods to exploit them.
+
+You can refer to https://cwe.mitre.org/top25/archive/2020/2020_cwe_top25.html and https://samate.nist.gov/SRD/index.php for reference to common software weaknesses (CWEs).
+
+Select any CWE (except those pertaining to buffer overflow). You will have to understand the weakness and develop one program/system where you design an exploit on that CWE.
+
+You will have to write a report that covers:
+
+Details of the weakness as YOU understand it?
+The attack model under which you have built your exploit. Is there any specific requirement for the bug to be exploited (specific operating system, hardware, libraries, etc.)?
+How to run your vulnerable system to expose the exploit.
+Explain how your exploit works (in the accompanying program/system).
+Explain how to mitigate this weakness, i.e. exactly pin-point what was wrong in the program/system and what is the way the program should have been written.
+You are allowed to use any language/system to implement your vulnerable system/program.
+
+ 
 
 Deliverables:
 
-The tex source file
-The plot files as images
-The data, either as a CSV file or a link to where it is available
-A script that generates all the images that you use from the data
-The PDF file generated from all the above
-You will be graded by the quality of your story and how well do your plots supplement it.
+You have to submit only one zip folder as final submission in the format cs253_assign_4_<your_roll_number>.zip
+
+This zip folder should contain the following files:
+
+Report
+A report file must be in PDF format and CANNOT be longer than 4 pages in 10 font.
+Vulnerable and mitigated program/system
+Working software/program, test case/suite, automated script to run the test, the output of the exploitation when run on your machine.
