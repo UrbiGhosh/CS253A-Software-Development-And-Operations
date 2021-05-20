@@ -1,0 +1,18 @@
+Report:
+1. Used concatenation for generate.sh and added sign bias separately.
+2. Started by reading some algorithms to perform the given task. (Delayed greedy, HGS, Greedy
+Algorithm)
+3. Proceeded to write a simple reduce.cpp file assuming
+that a test cases table is provided (like the one given
+alongside)
+4. Algorithm :
+• First test case chosen is the one that covers the maximum number of branches
+• Then we choose the test case (apart from this) which
+covers the maximum test cases (EXCEPT the ones already covered by previous ‘chosen’ test cases)
+• Output the chosen test cases which can be <= k
+5. Creation of the given array: identified all the “branch 0 taken x” (x>0) using grep , from
+the .gcov file generated Time Complexity: O(n*k)
+Instructions:
+1. The program is P.cpp
+2. Running reduce.sh. asks for program path (ie. P.cpp), asks for input n and k 3. Then proceeds to generate n test files in ‘Tests’.
+4. Then generates ‘reducedTests’ containing chosen tests with cardinality <=k
