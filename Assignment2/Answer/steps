@@ -1,0 +1,23 @@
+First I downloaded the data and stored it in a file
+Then created a script that takes input from data file and outputs to a csv file
+Tried to decipher the structure of data in Firefox and used appropriate jq commands to read inputs. 
+Structure :
+<state>: {
+    delta7: {},
+    districts: {
+        <district> : {
+            delta7: ..., 
+            meta: ...
+            total: {}
+        }
+        ...
+    }
+    meta: {},
+    total: {}
+}
+...
+
+Iterated over all states. And then looked at each district. 
+For each district kept updating the max counts of recovered cases and the corresponding districts.
+
+Checked for district =‘’Unknown “ and cases <5000 after reading the district and state datas.
